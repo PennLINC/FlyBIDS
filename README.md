@@ -39,7 +39,7 @@ template                                           Filename  \
 13        bold   False  5ebee86e4425360a219e6672  rest       NaN  2216595430
 14         NaN   False  5ebee8714425360a219e6673   NaN  NaN  NaN  2216595430
 15   phasediff   False  5ebee87244253609f99e681a   NaN  NaN       2216595430
->>>
+>>> fbl.get_files(RepetitionTime=3)
 ['sub-1832999514_ses-PNC1_task-rest_acq-singleband_bold.nii.gz',
  'sub-1832999514_ses-PNC2_task-idemo.nii.gz',
  'sub-1832999514_ses-PNC2_task-rest_acq-singleband_bold.nii.gz',
