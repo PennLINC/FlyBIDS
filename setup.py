@@ -7,7 +7,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="FlyBIDS",
-    version="0.0.1",
+    version="0.0.2",
     author="Tinashe M. Tapera",
     author_email="tinashemtapera@gmail.com",
     description="Quickly collect and inspect BIDS data on Flywheel",
