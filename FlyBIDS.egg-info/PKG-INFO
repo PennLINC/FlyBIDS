@@ -1,0 +1,27 @@
+Metadata-Version: 2.1
+Name: FlyBIDS
+Version: 0.0.1
+Summary: Quickly collect and inspect BIDS data on Flywheel
+Home-page: https://github.com/PennLINC/FlyBIDS
+Author: Tinashe M. Tapera
+Author-email: tinashemtapera@gmail.com
+License: UNKNOWN
+Description: # FlyBIDS
+        
+        Quickly build and inspect Flywheel BIDS data.
+        
+        # Examples
+        ```python
+        > from FlyBIDS.BIDSLayout import FlyBIDSLayout
+        > fbl = FlyBIDSLayout('GRMPY_822831', subjects=['11364', '86486'])
+        > print(fbl)
+        > as_df = fbl.to_df()
+        > fbl.get_files(RepetitionTime=3)
+        > fbl.get_metadata('EchoTime', filename='sub-014613_ses-002236_task-emotionid_bold.nii.gz')
+        ```
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3.6
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown

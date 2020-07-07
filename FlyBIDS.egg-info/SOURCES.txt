@@ -1,0 +1,10 @@
+README.md
+setup.py
+FlyBIDS/BIDSLayout.py
+FlyBIDS/__init__.py
+FlyBIDS/utils.py
+FlyBIDS.egg-info/PKG-INFO
+FlyBIDS.egg-info/SOURCES.txt
+FlyBIDS.egg-info/dependency_links.txt
+FlyBIDS.egg-info/requires.txt
+FlyBIDS.egg-info/top_level.txt

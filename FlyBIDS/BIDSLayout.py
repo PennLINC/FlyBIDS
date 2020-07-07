@@ -25,6 +25,7 @@ class FlyBIDSLayout:
 
     Examples
     --------
+    > from FlyBIDS import FlyBIDSLayout
     > fbl = FlyBIDSLayout('GRMPY_822831', subjects=['11364', '86486'])
     > print(fbl)
     > as_df = fbl.to_df()
@@ -50,8 +51,8 @@ class FlyBIDSLayout:
         if isinstance(sessions, str):
             sessions = [sessions]
 
-        self.subjects = []
-        self.sessions = []
+        self.subjects = dict()
+        self.sessions = dict()
         project = client.projects.find_first('label={}'.format(project))
         self.project = project.label
 
@@ -69,8 +70,6 @@ class FlyBIDSLayout:
                 if sessions is not None and sess.label not in sessions:
                     continue
 
-                self.sessions.append(sess.label)
-
                 for acq in sess.acquisitions():
 
                     acq = client.get(acq.id)
@@ -85,22 +84,26 @@ class FlyBIDSLayout:
                             not get_nested(f, 'info', 'BIDS', 'ignore')
                             ):
 
-                            self.__bids_files.append(f.info)
+                            info_out = f.info
+                            info_out['id'] = acq.id
+                            info_out['BIDS']['id'] = acq.id
+
+                            self.__bids_files.append(info_out)
                             subject_has_bids = True
                             session_has_bids = True
 
                 if session_has_bids:
-                    self.sessions.append(sess.label)
+                    self.sessions[sess.label] = sess.id
 
             if subject_has_bids:
-                self.subjects.append(sub.label)
+                self.subjects[sub.label] = sub.id
 
 
     def __repr__(self):
         """Provide a tidy summary of key properties."""
-        n_subjects = len(set(self.subjects))
+        n_subjects = len(set(self.subjects.keys()))
 
-        n_sessions = len(set(self.sessions))
+        n_sessions = len(set(self.sessions.keys()))
 
         #n_runs = len()
 
@@ -126,7 +129,7 @@ class FlyBIDSLayout:
             lambda x: extract(x, '(?<=ses-)[a-zA-Z0-9]*(?=_)'))
             )
 
-        return df
+        return df.drop('IntendedFor', axis=1, inplace=False).drop_duplicates()
 
     def get_metadata(self, fields, filename=None, **kwargs):
 
