@@ -93,10 +93,10 @@ class FlyBIDSLayout:
                             session_has_bids = True
 
                 if session_has_bids:
-                    self.sessions[sess.label] = sess.id
+                    self.sessions[sess.id] = sess.label
 
             if subject_has_bids:
-                self.subjects[sub.label] = sub.id
+                self.subjects[sub.id] = sub.label
 
 
     def __repr__(self):
